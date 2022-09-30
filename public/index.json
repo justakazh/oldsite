@@ -1,0 +1,22 @@
+
+{
+    
+    
+    
+    
+    
+    
+    
+    
+        
+    
+        
+    
+        
+    
+    "articles": [{"date":"2022-09-29","image":"","link":"https://justakazh.github.io/posts/my-first-post/","summary":"","tags":["hacks"],"title":"My First Post"},{"date":"0001-01-01","image":"","link":"https://justakazh.github.io/manifest/index.json","summary":"","tags":[],"title":"Manifest"},{"date":"0001-01-01","image":"","link":"https://justakazh.github.io/search/","summary":"","tags":[],"title":"Search"}],
+    "test": "My First Post   Manifest   Search   ",
+    "page": "1",
+    "next": ""
+}
+
