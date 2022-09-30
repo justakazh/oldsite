@@ -1,0 +1,6 @@
+[submodule "themes/smigle"]
+	path = themes/smigle
+	url = https://gitlab.com/ian-s-mcb/smigle-hugo-theme.git
+[submodule "themes/ficurinia"]
+	path = themes/ficurinia
+	url = https://gitlab.com/gabmus/hugo-ficurinia.git

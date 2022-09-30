@@ -1,0 +1,18 @@
+{{ define "main" }}
+{
+    {{ $mscratch := newScratch }}
+    {{ $mscratch.Add "articles" slice }}
+    {{ $pages := where .Site.RegularPages "Params.nosearch" "!=" "true" }}
+    {{ range $pages }}
+        {{ $mscratch.Add "articles" (dict
+            "title" .Title
+            "date" (.Date.Format "2006-01-02")
+            "tags" (sort (or .Params.tags slice))
+            "summary" (or .Params.description .Summary)
+            "text" (lower .Plain)
+            "link" .Permalink
+            "image" (or .Params.Image "")) }}
+    {{ end }}
+    "pages": {{ $mscratch.Get "articles" | jsonify }}
+}
+{{ end }}
