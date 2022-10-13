@@ -1,10 +1,9 @@
 ---
 title: "[Writeup][HackTheBox] Legacy"
-date: 2022-10-14T01:49:09-10:00
+date: 2022-09-29T06:49:09-10:00
 author : "justakazh"
 tags : ["writeup", "hackhebox", "easy", "windows", "netapi", "smb", "hacking", "445"]
 ---
-
 
 ## Summary
 
