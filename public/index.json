@@ -14,9 +14,15 @@
     
         
     
-    "articles": [{"date":"2022-09-29","image":"","link":"https://justakazh.github.io/posts/my-first-post/","summary":"","tags":["hacks"],"title":"My First Post"},{"date":"0001-01-01","image":"","link":"https://justakazh.github.io/manifest/index.json","summary":"","tags":[],"title":"Manifest"},{"date":"0001-01-01","image":"","link":"https://justakazh.github.io/search/","summary":"","tags":[],"title":"Search"}],
-    "test": "My First Post   Manifest   Search   ",
+        
+    
+        
+    
+    "articles": [{"date":"2022-09-30","image":"","link":"https://justakazh.github.io/about/","summary":"","tags":[],"title":"About"},{"date":"2022-09-29","image":"","link":"https://justakazh.github.io/posts/writeuphackthebox-devel/","summary":"Summary Machine Name : Devel\nMachine Difficult : Easy\nMachine Author : ch4p\nMachine URL : Hack The Box\nNMAP Enumeration ┌──(punktester㉿kali)-[~/…/ctf/htb/easy/devel] └─$ sudo nmap -sV 10.129.136.185 -oN nmap-tcp-ports [sudo] password for punktester: Starting Nmap 7.92 ( https://nmap.org ) at 2022-10-14 06:30 HST Nmap scan report for 10.129.136.185 Host is up (0.20s latency). Not shown: 998 filtered tcp ports (no-response) PORT STATE SERVICE VERSION 21/tcp open ftp Microsoft ftpd 80/tcp open http Microsoft IIS httpd 7.","tags":["easy","ftp","hackhebox","hacking","privesc","windows","writeup","21"],"title":"[Writeup][HackTheBox] Devel"},{"date":"2022-09-29","image":"","link":"https://justakazh.github.io/posts/writeuphackthebox-lame/","summary":"Summary Machine Name : Lame\nMachine Difficult : Easy\nMachine Author : ch4p\nMachine URL : Hack The Box\nNMAP ENUMERATION ┌──(punktester㉿kali)-[~/…/ctf/htb/easy/lame] └─$ sudo nmap -sV 10.10.10.3 Starting Nmap 7.92 ( https://nmap.org ) at 2022-10-13 12:35 HST Nmap scan report for lame.htb (10.10.10.3) Host is up (0.38s latency). Not shown: 996 filtered tcp ports (no-response) PORT STATE SERVICE VERSION 21/tcp open ftp vsftpd 2.3.4 22/tcp open ssh OpenSSH 4.7p1 Debian 8ubuntu1 (protocol 2.","tags":["easy","hackhebox","hacking","linux","samba","writeup","445"],"title":"[Writeup][HackTheBox] Lame"},{"date":"2022-09-29","image":"","link":"https://justakazh.github.io/posts/writeuphackthebox-legacy/","summary":"Summary Machine Name : Legacy\nMachine Author : [ch4p](Hack The Box)\nMachine Difficult : Easy\nMachine URL : Hack The Box\nNMAP Enumeration Melakukan pengecheckan terhadap port yang umum\n└─$ sudo nmap 10.129.227.181 [sudo] password for punktester: Starting Nmap 7.92 ( https://nmap.org ) at 2022-10-14 05:47 HST Nmap scan report for 10.129.227.181 Host is up (0.20s latency). Not shown: 997 closed tcp ports (reset) PORT STATE SERVICE 135/tcp open msrpc 139/tcp open netbios-ssn 445/tcp open microsoft-ds Melakukan pengecheckan versi yang digunakan terhadap port yang terbuka","tags":["easy","hackhebox","hacking","netapi","smb","windows","writeup","445"],"title":"[Writeup][HackTheBox] Legacy"},{"date":"0001-01-01","image":"","link":"https://justakazh.github.io/donate/","summary":"HALLO WORLD!","tags":[],"title":"Donate"}],
+    "test": "About   [Writeup][HackTheBox] Devel   [Writeup][HackTheBox] Lame   [Writeup][HackTheBox] Legacy   Donate   Manifest   Search   ",
     "page": "1",
-    "next": ""
+    "next": 
+        "https://justakazh.github.io/page/2/index.json"
+    
 }
 

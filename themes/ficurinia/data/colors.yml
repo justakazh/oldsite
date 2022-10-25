@@ -5,7 +5,7 @@ dark:
   hl_bg: '#141D2B'  # card and circle navigation background color for paper card mode
   fg: 'white'  # font color
   dim_fg: '#bababa'  # will be used for secondary information like dates and tags
-  stroke: 'red'  # stroke/border color used mostly in the icon menu tooltip
+  stroke: '#204408'  # stroke/border color used mostly in the icon menu tooltip
   accent: '#93DD03'  # pervasive accent color
   sidebar:
     bg: '#141D2B'  # sidebar background

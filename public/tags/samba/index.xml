@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>samba on Justakazh</title>
+    <link>https://justakazh.github.io/tags/samba/</link>
+    <description>Recent content in samba on Justakazh</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>Justakazh - Nulis karena pelupa</copyright>
+    <lastBuildDate>Thu, 29 Sep 2022 06:49:09 -1000</lastBuildDate><atom:link href="https://justakazh.github.io/tags/samba/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[Writeup][HackTheBox] Lame</title>
+      <link>https://justakazh.github.io/posts/writeuphackthebox-lame/</link>
+      <pubDate>Thu, 29 Sep 2022 06:49:09 -1000</pubDate>
+      
+      <guid>https://justakazh.github.io/posts/writeuphackthebox-lame/</guid>
+      <description>Summary Machine Name : Lame
+Machine Difficult : Easy
+Machine Author : ch4p
+Machine URL : Hack The Box
+NMAP ENUMERATION ┌──(punktester㉿kali)-[~/…/ctf/htb/easy/lame] └─$ sudo nmap -sV 10.10.10.3 Starting Nmap 7.92 ( https://nmap.org ) at 2022-10-13 12:35 HST Nmap scan report for lame.htb (10.10.10.3) Host is up (0.38s latency). Not shown: 996 filtered tcp ports (no-response) PORT STATE SERVICE VERSION 21/tcp open ftp vsftpd 2.3.4 22/tcp open ssh OpenSSH 4.7p1 Debian 8ubuntu1 (protocol 2.</description>
+    </item>
+    
+  </channel>
+</rss>
